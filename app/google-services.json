@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "489560220969",
+    "project_id": "speechinsight-bdea1",
+    "storage_bucket": "speechinsight-bdea1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:489560220969:android:89c570fc01b118e3510338",
+        "android_client_info": {
+          "package_name": "com.example.speechinsight"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCi1_6by4QyWYs_8m1e8sbNc7012652Lg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
