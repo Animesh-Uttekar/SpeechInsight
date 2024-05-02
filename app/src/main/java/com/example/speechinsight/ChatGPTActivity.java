@@ -58,46 +58,32 @@ public class ChatGPTActivity extends AppCompatActivity {
         promptInput = findViewById(R.id.promptInput);
         sendButton = findViewById(R.id.sendButton);
 
+        // Initialize RecyclerView and Adapter
         dialog = new ArrayList<>();
         messageAdapter = new MessageAdapter(dialog);
         recyclerView.setAdapter(messageAdapter);
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        llm.setStackFromEnd(true);
-        recyclerView.setLayoutManager(llm);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        // Initialize OkHttpClient
         client = new OkHttpClient();
 
-        // Initialize Spinner
-        promptSpinner = findViewById(R.id.promptSpinner);
-        promptAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, promptOptions);
-        promptAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        promptSpinner.setAdapter(promptAdapter);
+        // Get the speech text from MainActivity and send it automatically
+        String speechText = getIntent().getStringExtra("speechText");
+        if (speechText != null && !speechText.isEmpty()) {
+            promptInput.setText(speechText);
+            addToChat(speechText, Message.SENT_BY_ME); // Add the text to the chat
+            callAPI(speechText);  // Send the text to ChatGPT immediately
+        }
 
-        // Initialize other UI components...
-
-        // Set up send button click listener
-        sendButton.setOnClickListener((v)->{
-            String prompt = promptSpinner.getSelectedItem().toString(); // Retrieve selected prompt
-            String userInput = promptInput.getText().toString().trim(); // Retrieve user's input message
-
-            // Concatenate prompt and user input if the prompt is not blank
+        // Setup the send button for further manual inputs
+        sendButton.setOnClickListener((v) -> {
+            String prompt = promptInput.getText().toString().trim();
             if (!prompt.isEmpty()) {
-                prompt += "\n" + userInput;
-            } else {
-                prompt = userInput; // Use only user input if prompt is blank
+                addToChat(prompt, Message.SENT_BY_ME);
+                promptInput.setText("");
+                callAPI(prompt);
             }
-
-            // Add prompt to chat
-            addToChat(prompt, Message.SENT_BY_ME);
-
-            // Clear input field
-            promptInput.setText("");
-
-            // Send the combined prompt to the API
-            callAPI(prompt);
         });
-
-
     }
 
     // This method makes an API call to OpenAI
@@ -105,8 +91,8 @@ public class ChatGPTActivity extends AppCompatActivity {
         JSONObject requestBody = createRequestJSON(prompt);
         okhttp3.RequestBody body = RequestBody.create(requestBody.toString(), MediaType.get("application/json; charset=utf-8"));
         Request request = new Request.Builder()
-                .url("https://api.openai.com/v1/chat/completions")
-                .header("Authorization", "Bearer sk-")
+                .url("https://api.openai.com/v1/completions")
+                .header("Authorization","Bearer sk-")
                 .post(body)
                 .build();
 

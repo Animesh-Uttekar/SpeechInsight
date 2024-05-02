@@ -54,14 +54,20 @@ public class MainActivity extends AppCompatActivity{
         });
     }
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
-    {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE_SPEECH_INPUT) {
-            if (resultCode == RESULT_OK && data != null) {
-                ArrayList<String> speech_to_text_data = data.getStringArrayListExtra(
-                        RecognizerIntent.EXTRA_RESULTS);
-                tv_Speech_to_text.setText(Objects.requireNonNull(speech_to_text_data).get(0));
+        if (requestCode == REQUEST_CODE_SPEECH_INPUT && resultCode == RESULT_OK && data != null) {
+            ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+            if (result != null && !result.isEmpty()) {
+                String recognizedText = result.get(0);
+                tv_Speech_to_text.setText(recognizedText);
+
+                String modifiedText = "Analyze the following text and provide a list of simpler, more effective words suitable for speech \"" + recognizedText +"\"";
+
+                // Start ChatGPTActivity and pass the modified text
+                Intent intent = new Intent(MainActivity.this, ChatGPTActivity.class);
+                intent.putExtra("speechText", modifiedText);
+                startActivity(intent);
             }
         }
     }
