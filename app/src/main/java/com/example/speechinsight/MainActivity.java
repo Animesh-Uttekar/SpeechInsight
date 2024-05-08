@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity{
 
     private ImageView iv_mic;
     private TextView tv_Speech_to_text;
+
+    private Button chatGPTButton;
     private static final int REQUEST_CODE_SPEECH_INPUT = 1;
 
     @Override
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity{
 
         iv_mic = findViewById(R.id.iv_mic);
         tv_Speech_to_text = findViewById(R.id.tv_speech_to_text);
+        chatGPTButton = findViewById(R.id.chatGPTButton);
 
         iv_mic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +53,14 @@ public class MainActivity extends AppCompatActivity{
                 catch (Exception e) {
                     Toast.makeText(MainActivity.this, " " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+        chatGPTButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create an Intent to start ChatGPTActivity
+                Intent intent = new Intent(MainActivity.this, ChatGPTActivity.class);
+                startActivity(intent);
             }
         });
     }
