@@ -1,8 +1,8 @@
-# SpeechInsight 🎤
+# SpeechInsight
 
 An Android application that combines speech-to-text recognition with AI-powered text analysis using OpenAI's GPT models.
 
-## Features ✨
+## Features
 
 - **Speech-to-Text Recognition**: Convert spoken words to text using Android's built-in speech recognition
 - **AI-Powered Analysis**: Automatically analyze recognized speech with ChatGPT for word simplification and effectiveness suggestions  
@@ -10,11 +10,7 @@ An Android application that combines speech-to-text recognition with AI-powered 
 - **Interactive Chat Interface**: Chat with AI to get suggestions and improvements for your speech
 - **Real-time Processing**: Immediate analysis of speech input with AI feedback
 
-## Screenshots 📱
-
-![Login Screen](signin_page.png)
-
-## Architecture 🏗️
+## Architecture
 
 The app follows a multi-activity architecture with these main components:
 
@@ -29,7 +25,7 @@ The app follows a multi-activity architecture with these main components:
 - **Message**: Data model for chat messages
 - **MessageAdapter**: RecyclerView adapter for displaying chat conversations
 
-## Technology Stack 🛠️
+## Technology Stack
 
 - **Language**: Java
 - **Platform**: Android (API 26+)
@@ -41,7 +37,7 @@ The app follows a multi-activity architecture with these main components:
   - Material Design components
   - Custom EditText styling
 
-## Setup & Installation 🚀
+## Setup & Installation
 
 ### Prerequisites
 - Android Studio
@@ -75,19 +71,19 @@ The app follows a multi-activity architecture with these main components:
    - Sync the project with Gradle files
    - Run the app on your device/emulator
 
-## Permissions 🔐
+## Permissions
 
 The app requires the following permissions:
 - `RECORD_AUDIO`: For speech-to-text functionality
 
-## Usage Flow 📋
+## Usage Flow
 
 1. **Authentication**: Users must sign up or log in using email/password
 2. **Speech Input**: Tap the microphone icon to start speech recognition
 3. **AI Analysis**: The app automatically sends recognized text to ChatGPT with the prompt: "Analyze the following text and provide a list of simpler, more effective words suitable for speech"
 4. **Interactive Chat**: Users can continue chatting with the AI for further suggestions and improvements
 
-## Configuration ⚙️
+## Configuration
 
 ### Gradle Dependencies
 ```gradle
@@ -102,14 +98,14 @@ implementation 'com.google.firebase:firebase-auth:22.3.1'
 - **API Endpoint**: `https://api.openai.com/v1/completions`
 - **Temperature**: 0 (for consistent responses)
 
-## Security Notes ⚠️
+## Security Notes
 
 - **API Key Security**: The OpenAI API key is currently hardcoded. For production, consider:
   - Using Android Keystore for secure storage
   - Implementing a backend proxy to hide API keys
   - Using environment variables or secure configuration files
 
-## Contributing 🤝
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -117,7 +113,7 @@ implementation 'com.google.firebase:firebase-auth:22.3.1'
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## Future Enhancements 🚀
+## Future Enhancements
 
 - [ ] Analytics dashboard implementation
 - [ ] Offline speech recognition
@@ -128,18 +124,18 @@ implementation 'com.google.firebase:firebase-auth:22.3.1'
 - [ ] Speech pattern analysis
 - [ ] Export conversation transcripts
 
-## Known Issues 🐛
+## Known Issues
 
 - API key is exposed in source code (security concern)
 - Limited error handling for network failures
 - No offline functionality
 - Deprecated `onActivityResult` method usage
 
-## License 📄
+## License
 
 This project is open source. Please check the repository for license details.
 
-## Contact 📧
+## Contact
 
 **Animesh Uttekar**
 - GitHub: [@Animesh-Uttekar](https://github.com/Animesh-Uttekar)
